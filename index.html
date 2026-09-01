@@ -1,1 +1,906 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alto Estilo Barber | Estudio de Barbería Premium</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#8B5CF6',
+                            blue: '#2563EB',
+                            dark: '#09090B',
+                            card: '#121215',
+                            border: '#27272A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B5CF6 0%, #2563EB 100%);
+        }
+        .gradient-border {
+            border-image: linear-gradient(to right, #8B5CF6, #3B82F6) 1;
+        }
+        .glass-card {
+            background: rgba(18, 18, 21, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-zinc-100 font-sans antialiased selection:bg-purple-600 selection:text-white">
 
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card border-b border-zinc-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl gradient-bg p-0.5 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 3v18M18 3v18M6 12h12M6 7h12M6 17h12" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-wider text-white uppercase leading-none">Alto Estilo</span>
+                    <span class="text-xs font-semibold text-purple-400 tracking-widest uppercase">Barber</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#inicio" class="hover:text-purple-400 transition-colors">Inicio</a>
+                <a href="#servicios" class="hover:text-purple-400 transition-colors">Servicios</a>
+                <a href="#equipo" class="hover:text-purple-400 transition-colors">Equipo</a>
+                <a href="#galeria" class="hover:text-purple-400 transition-colors">Galería</a>
+                <a href="#horarios" class="hover:text-purple-400 transition-colors">Horarios</a>
+                <a href="#testimonios" class="hover:text-purple-400 transition-colors">Testimonios</a>
+            </nav>
+
+            <!-- CTA Button Header -->
+            <div class="hidden md:flex items-center">
+                <a href="#citas" class="gradient-bg text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-purple-600/25 hover:shadow-purple-600/40 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span>Agendar Cita</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-zinc-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir Menú">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Inicio</a>
+            <a href="#servicios" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Servicios</a>
+            <a href="#equipo" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Equipo</a>
+            <a href="#galeria" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Galería</a>
+            <a href="#horarios" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Horarios</a>
+            <a href="#testimonios" class="mobile-link block py-2.5 px-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 hover:text-purple-400 font-medium">Testimonios</a>
+            <a href="#citas" class="mobile-link block w-full text-center gradient-bg text-white font-semibold py-3 rounded-xl shadow-lg shadow-purple-600/30 mt-4">
+                Agendar Cita
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Ambient Background Lights -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <!-- Dynamic Status Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-900/90 border border-zinc-800 mb-8 shadow-xl">
+                <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="status-text" class="text-xs sm:text-sm font-semibold tracking-wide uppercase text-zinc-300">Cargando estado...</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                Cortes de estilo superior con <br class="hidden sm:inline"/>
+                <span class="gradient-text">precisión & propósito</span>
+            </h1>
+
+            <!-- Slogan -->
+            <p class="max-w-2xl mx-auto text-base sm:text-xl text-zinc-400 font-normal italic mb-10 leading-relaxed">
+                "Que la obra de tus manos sea bendecida hoy, y cada corte lleve precisión y propósito"
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#citas" class="w-full sm:w-auto gradient-bg text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-scissors"></i>
+                    <span>Reservar mi Cita</span>
+                </a>
+                <a href="#servicios" class="w-full sm:w-auto bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-white font-semibold text-base px-8 py-4 rounded-xl border border-zinc-800 transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Ver Servicios</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Stats/Highlights -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 pt-10 border-t border-zinc-800/60 max-w-4xl mx-auto">
+                <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/40">
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-white mb-1">100%</span>
+                    <span class="text-xs text-zinc-400 uppercase tracking-wider">Atención Premium</span>
+                </div>
+              <!-- <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/40">
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-purple-400 mb-1">+5</span>
+                    <span class="text-xs text-zinc-400 uppercase tracking-wider">Años Experiencia</span>
+                </div>-->
+                <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/40">
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-blue-400 mb-1">4.9 ★</span>
+                    <span class="text-xs text-zinc-400 uppercase tracking-wider">Calificación</span>
+                </div>
+                <div class="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/40">
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-white mb-1">Equipo</span>
+                    <span class="text-xs text-zinc-400 uppercase tracking-wider">Profesional</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS SECTION -->
+    <section id="servicios" class="py-24 bg-zinc-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-3">Experiencia Exclusiva</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Nuestros Servicios</p>
+                <p class="text-zinc-400 text-sm sm:text-base">Catálogo completo con tiempos estimados e inversión para garantizar la máxima calidad en tu imagen.</p>
+            </div>
+
+            <!-- Servicios Principales Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Service Card 1 -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-purple-600/10 rounded-bl-full pointer-events-none transition-all group-hover:bg-purple-600/20"></div>
+                    <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-purple-400 mb-6 text-xl">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Corte Clásico</h3>
+                        <span class="text-2xl font-extrabold text-purple-400">$3</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Técnica tradicional con tijera o máquina adaptada a la morfología facial del cliente.</p>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500 font-medium pt-4 border-t border-zinc-800/80">
+                        <i class="fa-regular fa-clock text-purple-400"></i>
+                        <span>Duración: 25 minutos</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-600/10 rounded-bl-full pointer-events-none transition-all group-hover:bg-blue-600/20"></div>
+                    <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-blue-400 mb-6 text-xl">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Degradados (Fade)</h3>
+                        <span class="text-2xl font-extrabold text-blue-400">$3</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Desvanecidos limpios en todas sus variantes (Low, Mid, High, Taper) con acabado perfecto.</p>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500 font-medium pt-4 border-t border-zinc-800/80">
+                        <i class="fa-regular fa-clock text-blue-400"></i>
+                        <span>Duración: 25 minutos</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+               <!-- <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-purple-600/10 rounded-bl-full pointer-events-none transition-all group-hover:bg-purple-600/20"></div>
+                    <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-purple-400 mb-6 text-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Decoloración</h3>
+                        <span class="text-2xl font-extrabold text-purple-400">$5</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Proceso químico profesional para aclarados, tonos platinados o colores de tendencia.</p>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500 font-medium pt-4 border-t border-zinc-800/80">
+                        <i class="fa-regular fa-clock text-purple-400"></i>
+                        <span>Duración: 30 minutos</span>
+                    </div>
+                </div>  -->
+
+                <!-- Service Card 4 -->
+                <div class="glass-card rounded-2xl p-6 transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-600/10 rounded-bl-full pointer-events-none transition-all group-hover:bg-blue-600/20"></div>
+                    <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-blue-400 mb-6 text-xl">
+                        <i class="fa-solid fa-soap"></i>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white">Lavado de Cabello</h3>
+                        <span class="text-2xl font-extrabold text-blue-400">$4</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Limpieza capilar profunda con productos acondicionadores y masaje craneal relax.</p>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500 font-medium pt-4 border-t border-zinc-800/80">
+                        <i class="fa-regular fa-clock text-blue-400"></i>
+                        <span>Duración: 10 minutos</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 (Combos) -->
+                <div class="glass-card md:col-span-2 lg:col-span-2 rounded-2xl p-6 transition-all duration-300 relative group border-purple-500/30">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-semibold mb-2">Popular</span>
+                            <h3 class="text-2xl font-bold text-white">Combos Personalizados</h3>
+                        </div>
+                        <span class="text-xs text-zinc-400 bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700">A preferencia del cliente</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Combina cualquiera de nuestros servicios principales con adicionales para una sesión integral de renovación.</p>
+                    <a href="#citas" class="inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                        <span>Diseñar mi combo en la reserva</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Adicionales / Add-ons -->
+            <div class="bg-zinc-900/60 rounded-2xl p-8 border border-zinc-800">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-circle-plus text-purple-400"></i>
+                    <span>Servicios Adicionales (Add-ons)</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-zinc-800/40 border border-zinc-800">
+                        <div>
+                            <p class="font-bold text-white text-base">Perfilado de Barba</p>
+                            <span class="text-xs text-zinc-400">5 min de atención</span>
+                        </div>
+                        <span class="font-extrabold text-purple-400 text-lg">$2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-zinc-800/40 border border-zinc-800">
+                        <div>
+                            <p class="font-bold text-white text-base">Perfilado de Cejas</p>
+                            <span class="text-xs text-zinc-400">5 min de atención</span>
+                        </div>
+                        <span class="font-extrabold text-blue-400 text-lg">$2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-zinc-800/40 border border-zinc-800">
+                        <div>
+                            <p class="font-bold text-white text-base">Mascarilla Facial</p>
+                            <span class="text-xs text-zinc-400">5 min de aplicación</span>
+                        </div>
+                        <span class="font-extrabold text-purple-400 text-lg">$2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPO SECTION -->
+    <section id="equipo" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Especialistas</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Nuestro Equipo</p>
+                <p class="text-zinc-400 text-sm sm:text-base">Master barbers apasionados por el detalle y el arte de la barbería masculina.</p>
+            </div>
+
+            <div class="flex justify-center max-w-md mx-auto">
+                <!-- Barber 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group w-full">
+                    <div class="h-72 bg-zinc-800 relative overflow-hidden flex items-center justify-center">
+                        <!-- Placeholder visual profesional -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent z-10"></div>
+                        <i class="fa-solid fa-user-ninja text-7xl text-zinc-700 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-4 right-4 z-20 bg-purple-600/80 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">Senior Barber</span>
+                    </div>
+                    <div class="p-6 relative z-20">
+                        <h3 class="text-xl font-bold text-white mb-1">Giacomo</h3>
+                        <p class="text-xs text-purple-400 font-semibold uppercase tracking-wider mb-3">Especialista en Degradados & Barba</p>
+                        <p class="text-zinc-400 text-sm mb-6">Dominio absoluto de cortes urbanos, frotado a navaja y diseño de barba perfilada.</p>
+                        <button onclick="selectBarberAndScroll('Giacomo')" class="w-full py-2.5 rounded-xl bg-zinc-800 hover:bg-purple-600 text-white text-sm font-semibold border border-zinc-700 hover:border-purple-500 transition-all duration-300">
+                            Agendar con Giacomo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- GALERÍA SECTION -->
+    <section id="galeria" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-3">Portafolio</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Galería de Trabajos</p>
+                <p class="text-zinc-400 text-sm sm:text-base">Muestra visual de acabados, degradados limpios y diseños realizados a nuestros clientes.</p>
+            </div>
+
+            <!-- Image Grid (10 Placeholders vectoriales estilizados) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                <!-- Gallery Item 1 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    
+                    <div class="w-12 h-12 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-scissors text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Low Fade Clean</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #01</span>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Platinado Silver</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #02</span>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-large text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Mid Fade & Barba</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #03</span>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-crown text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Taper Fade Moderno</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #04</span>
+                </div>
+                <!-- Gallery Item 5 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-spray-can text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Texturizado Crop</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #05</span>
+                </div>
+                <!-- Gallery Item 6 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gem text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Corte Ejecutivo</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #06</span>
+                </div>
+                <!-- Gallery Item 7 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-fire text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">High Burst Fade</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #07</span>
+                </div>
+                <!-- Gallery Item 8 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mask text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Tratamiento Facial</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #08</span>
+                </div>
+                <!-- Gallery Item 9 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-sliders text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Perfilado Navaja</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #09</span>
+                </div>
+                <!-- Gallery Item 10 -->
+                <div class="aspect-square rounded-xl bg-zinc-900 border border-zinc-800 relative group overflow-hidden flex flex-col items-center justify-center p-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </div>
+                    <span class="text-xs text-zinc-300 font-semibold">Freestyle Line</span>
+                    <span class="text-[10px] text-zinc-500">Trabajo #10</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SISTEMA DE RESERVAS Y CITAS INTERACTIVO -->
+    <section id="citas" class="py-24 bg-brand-dark relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-purple-500/20 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 -right-24 w-60 h-60 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center mb-10">
+                    <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold uppercase tracking-widest">Reserva en línea</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Agenda tu Cita</h2>
+                    <p class="text-zinc-400 text-sm mt-2">Completa los campos para procesar tu turno directo a WhatsApp.</p>
+                </div>
+
+                <form id="booking-form" class="space-y-6">
+                    <!-- Datos Personales -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Nombre Completo *</label>
+                            <input type="text" id="client-name" required placeholder="Ej. Alexander Gómez" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Teléfono de Contacto *</label>
+                            <input type="tel" id="client-phone" required placeholder="Ej. 04121234567" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Selección de Barbero -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Selecciona tu Barbero Preferido</label>
+                        <select id="barber-select" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                            <option value="Cualquier barbero disponible">Cualquier barbero disponible</option>
+                            <option value="Giacomo">Giacomo (Senior Barber)</option>
+                            <option value="Carlos Ruiz">Carlos Ruiz (Color Master)</option>
+                            <option value="Andrés Mendoza">Andrés Mendoza (Classic Specialist)</option>
+                        </select>
+                    </div>
+
+                    <!-- Servicio Principal -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Servicio Principal *</label>
+                        <select id="main-service" required class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                            <option value="" disabled selected>Selecciona un servicio</option>
+                            <option value="Corte Clásico ($3 - 25m)">Corte Clásico — $3 (25 min)</option>
+                            <option value="Degradados ($3 - 25m)">Degradados — $3 (25 min)</option>
+                            <option value="Decoloración ($5 - 30m)">Decoloración — $5 (30 min)</option>
+                            <option value="Lavado de Cabello ($4 - 10m)">Lavado de Cabello — $4 (10 min)</option>
+                            <option value="Combo Personalizado">Combo Personalizado</option>
+                        </select>
+                    </div>
+
+                    <!-- Adicionales (Checkboxes) -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Servicios Adicionales (Opcionales)</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl cursor-pointer hover:border-purple-500/50 transition-colors">
+                                <input type="checkbox" name="addons" value="Perfilado de Barba ($2)" class="rounded bg-zinc-800 border-zinc-700 text-purple-600 focus:ring-0">
+                                <span class="text-xs text-zinc-300 font-medium">Barba (+$2)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl cursor-pointer hover:border-purple-500/50 transition-colors">
+                                <input type="checkbox" name="addons" value="Perfilado de Cejas ($2)" class="rounded bg-zinc-800 border-zinc-700 text-purple-600 focus:ring-0">
+                                <span class="text-xs text-zinc-300 font-medium">Cejas (+$2)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-zinc-900/80 border border-zinc-800 rounded-xl cursor-pointer hover:border-purple-500/50 transition-colors">
+                                <input type="checkbox" name="addons" value="Mascarilla Facial ($2)" class="rounded bg-zinc-800 border-zinc-700 text-purple-600 focus:ring-0">
+                                <span class="text-xs text-zinc-300 font-medium">Mascarilla (+$2)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Selección de Fecha y Botones de Hora -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Fecha de Reserva *</label>
+                            <input type="date" id="booking-date" required class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Hora de Cita *</label>
+                            <input type="hidden" id="selected-time" required>
+                            <div id="time-slots-container" class="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto pr-1">
+                                <!-- Generado dinámicamente con JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notas Adicionales -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">Notas o Especificaciones</label>
+                        <textarea id="client-notes" rows="3" placeholder="Ej. Prefiero degradado bajo y corte liviano arriba..." class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-4 gradient-bg text-white font-bold text-base rounded-xl shadow-xl shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Confirmar y Reservar Cita</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORARIOS SECTION -->
+    <section id="horarios" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Disponibilidad</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mb-6">Horarios de Atención</p>
+                    <p class="text-zinc-400 text-base mb-8 leading-relaxed">
+                        Trabajamos en jornadas estructuradas para brindarte la mejor atención personalizada. Te sugerimos agendar tu turno con anticipación.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                            <span class="font-bold text-white">Martes a Sábado</span>
+                            <span class="text-sm font-semibold text-purple-400">07:30 AM – 08:30 PM</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                            <span class="font-bold text-white">Domingos</span>
+                            <span class="text-sm font-semibold text-purple-400">07:30 AM – 08:30 PM</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 opacity-75">
+                            <span class="font-bold text-zinc-400">Pausa de Almuerzo</span>
+                            <span class="text-sm font-semibold text-amber-400">12:00 PM – 01:00 PM</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-zinc-900/30 border border-zinc-800/30 opacity-60">
+                            <span class="font-bold text-zinc-500">Lunes</span>
+                            <span class="text-sm font-bold text-rose-500 uppercase tracking-wider">Cerrado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 border border-zinc-800 flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-600/20 text-purple-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">¿Necesitas una cita urgente?</h3>
+                    <p class="text-zinc-400 text-sm mb-6 max-w-sm">
+                        Escríbenos directamente por WhatsApp para consultar huecos de última hora por cancelaciones.
+                    </p>
+                    <a href="https://wa.me/584268558440" target="_blank" class="w-full sm:w-auto px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-sm rounded-xl border border-zinc-700 transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                        <span>Consultar por WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS SECTION -->
+    <section id="testimonios" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-3">Reseñas</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Lo que dicen nuestros clientes</p>
+                <p class="text-zinc-400 text-sm sm:text-base">La satisfacción y fidelidad de quienes confían su imagen en nuestras manos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 text-sm italic mb-6">"El nivel de detalle en el degradado es de otro planeta. Excelente ambiente, puntualidad y la atención de Giacomo impecable."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-zinc-800">
+                        <div class="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center text-purple-300 font-bold text-sm">
+                            MG
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Miguel Gutiérrez</p>
+                            <p class="text-xs text-zinc-500">Cliente Recurrente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 text-sm italic mb-6">"Me hice una decoloración platinada con Carlos y superó mis expectativas. El cabello quedó suave y el tono idéntico al que pedí."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-zinc-800">
+                        <div class="w-10 h-10 rounded-full bg-blue-600/30 flex items-center justify-center text-blue-300 font-bold text-sm">
+                            DR
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Daniel Rojas</p>
+                            <p class="text-xs text-zinc-500">Cliente Verificado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm gap-1 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-300 text-sm italic mb-6">"Un espacio realmente elegante y cómodo. Reservar por la página y llegar directo a la silla sin esperar no tiene precio."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-zinc-800">
+                        <div class="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center text-purple-300 font-bold text-sm">
+                            JR
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Javier Ramírez</p>
+                            <p class="text-xs text-zinc-500">Cliente Verificado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer class="bg-zinc-950 border-t border-zinc-800/80 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Branding -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg gradient-bg p-0.5 flex items-center justify-center">
+                            <div class="w-full h-full bg-brand-dark rounded-[6px] flex items-center justify-center">
+                                <svg class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 3v18M18 3v18M6 12h12M6 7h12M6 17h12" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="font-bold text-lg text-white uppercase tracking-wider">Alto Estilo Barber</span>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6 max-w-sm">
+                        "Que la obra de tus manos sea bendecida hoy, y cada corte lleve precisión y propósito"
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-purple-400 hover:border-purple-500 transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-blue-400 hover:border-blue-500 transition-colors">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-purple-400 hover:border-purple-500 transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contacto Rápido -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Ubicación & Contacto</h4>
+                    <ul class="space-y-3 text-sm text-zinc-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-purple-400 mt-1"></i>
+                            <a href="https://maps.app.goo.gl/CxcZgxUwSja4zkRF8" target="_blank" class="hover:text-white transition-colors">
+                                Calle Principal, Local #12, Zona Centro
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-blue-400"></i>
+                            <a href="tel:04268558440" class="hover:text-white transition-colors">0426-8558440</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                            <a href="https://wa.me/584268558440" target="_blank" class="hover:text-white transition-colors">+58 426-8558440</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Navegación -->
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-zinc-400">
+                        <li><a href="#inicio" class="hover:text-purple-400 transition-colors">Inicio</a></li>
+                        <li><a href="#servicios" class="hover:text-purple-400 transition-colors">Servicios</a></li>
+                        <li><a href="#equipo" class="hover:text-purple-400 transition-colors">Nuestro Equipo</a></li>
+                        <li><a href="#citas" class="hover:text-purple-400 transition-colors">Agendar Cita</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-800/60 pt-8 text-center text-xs text-zinc-500">
+                <p>&copy; <span id="year"></span> Alto Estilo Barber. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE PERSISTENTE DE WHATSAPP -->
+    <a href="https://wa.me/584268558440" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 group" aria-label="Contacto directo por WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute right-16 bg-zinc-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl">
+            ¿Consultas directas?
+        </span>
+    </a>
+
+    <!-- JAVASCRIPT INTEGRADO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+
+            // Generación Dinámica de Bloques de Horas para el Formulario
+            const timeSlotsContainer = document.getElementById('time-slots-container');
+            const selectedTimeInput = document.getElementById('selected-time');
+
+            const timeSlots = [
+                '07:30 AM', '08:00 AM', '08:30 AM', '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+                '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM', '05:00 PM',
+                '05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM', '08:00 PM'
+            ];
+
+            timeSlots.forEach(time => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'time-slot-btn py-2 px-1 text-[11px] font-semibold bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg hover:border-purple-500 transition-all text-center';
+                btn.textContent = time;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.time-slot-btn').forEach(b => {
+                        b.classList.remove('bg-purple-600', 'border-purple-500', 'text-white');
+                        b.classList.add('bg-zinc-900', 'border-zinc-800', 'text-zinc-300');
+                    });
+                    btn.classList.remove('bg-zinc-900', 'border-zinc-800', 'text-zinc-300');
+                    btn.classList.add('bg-purple-600', 'border-purple-500', 'text-white');
+                    selectedTimeInput.value = time;
+                });
+                timeSlotsContainer.appendChild(btn);
+            });
+
+            // Lógica para Evaluar Estatus "Abierto Ahora" / "Cerrado"
+            checkBusinessStatus();
+            setInterval(checkBusinessStatus, 60000); // Actualizar cada minuto
+
+            function checkBusinessStatus() {
+                const now = new Date();
+                const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+                const hour = now.getHours();
+                const minutes = now.getMinutes();
+                const currentTimeInMinutes = hour * 60 + minutes;
+
+                const statusDot = document.getElementById('status-dot');
+                const statusText = document.getElementById('status-text');
+
+                // Lunes Cerrado
+                if (day === 1) {
+                    setClosedStatus(statusDot, statusText, 'Cerrado Hoy (Lunes)');
+                    return;
+                }
+
+                const openTime = 7 * 60 + 30; // 07:30 AM (450 mins)
+                const closeTime = 20 * 60 + 30; // 08:30 PM (1230 mins)
+                const lunchStart = 12 * 60; // 12:00 PM (720 mins)
+                const lunchEnd = 13 * 60; // 01:00 PM (780 mins)
+
+                if (currentTimeInMinutes >= openTime && currentTimeInMinutes < closeTime) {
+                    if (currentTimeInMinutes >= lunchStart && currentTimeInMinutes < lunchEnd) {
+                        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse';
+                        statusText.textContent = 'Pausa de Almuerzo (Abre 01:00 PM)';
+                        statusText.className = 'text-xs sm:text-sm font-semibold tracking-wide uppercase text-amber-400';
+                    } else {
+                        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+                        statusText.textContent = 'Abierto Ahora (Atendiendo)';
+                        statusText.className = 'text-xs sm:text-sm font-semibold tracking-wide uppercase text-emerald-400';
+                    }
+                } else {
+                    setClosedStatus(statusDot, statusText, 'Cerrado Ahora');
+                }
+            }
+
+            function setClosedStatus(dot, text, label) {
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-rose-500';
+                text.textContent = label;
+                text.className = 'text-xs sm:text-sm font-semibold tracking-wide uppercase text-rose-400';
+            }
+
+            // Procesamiento del Formulario de Reserva hacia WhatsApp
+            const bookingForm = document.getElementById('booking-form');
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('client-name').value.trim();
+                const phone = document.getElementById('client-phone').value.trim();
+                const barber = document.getElementById('barber-select').value;
+                const mainService = document.getElementById('main-service').value;
+                const date = document.getElementById('booking-date').value;
+                const time = selectedTimeInput.value;
+                const notes = document.getElementById('client-notes').value.trim();
+
+                if (!time) {
+                    alert('Por favor selecciona un bloque de hora para tu cita.');
+                    return;
+                }
+
+                // Obtener adicionales seleccionados
+                const checkboxes = document.querySelectorAll('input[name="addons"]:checked');
+                let addons = [];
+                checkboxes.forEach(cb => addons.push(cb.value));
+                const addonsText = addons.length > 0 ? addons.join(', ') : 'Ninguno';
+
+                // Formatear Mensaje con Emojis
+                const message = `¡Hola! Deseo agendar una cita en *Alto Estilo Barber* ✂️🔥%0A%0A` +
+                    `👤 *Cliente:* ${encodeURIComponent(name)}%0A` +
+                    `📞 *Teléfono:* ${encodeURIComponent(phone)}%0A` +
+                    `💈 *Barbero:* ${encodeURIComponent(barber)}%0A` +
+                    `💈 *Servicio Principal:* ${encodeURIComponent(mainService)}%0A` +
+                    `➕ *Adicionales:* ${encodeURIComponent(addonsText)}%0A` +
+                    `📅 *Fecha:* ${encodeURIComponent(date)}%0A` +
+                    `⏰ *Hora:* ${encodeURIComponent(time)}%0A` +
+                    (notes ? `📝 *Notas:* ${encodeURIComponent(notes)}` : '');
+
+                const whatsappURL = `https://wa.me/584268558440?text=${message}`;
+                window.open(whatsappURL, '_blank');
+            });
+        });
+
+        // Función global para seleccionar barbero directamente desde las tarjetas de equipo
+        function selectBarberAndScroll(barberName) {
+            const barberSelect = document.getElementById('barber-select');
+            if (barberSelect) {
+                barberSelect.value = barberName;
+            }
+            const citasSection = document.getElementById('citas');
+            if (citasSection) {
+                citasSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
